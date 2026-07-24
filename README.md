@@ -343,4 +343,4 @@ validation.
 
 ## License
 
-MIT © Pragmatic Techsoft
+MIT © Rupesh Rajak
