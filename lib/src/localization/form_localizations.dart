@@ -1,0 +1,188 @@
+/// Built-in validation/UI messages with per-locale maps and custom overrides.
+///
+/// Supported out of the box: en, hi, ar, es, fr, de. Register more (or
+/// override any string) via [FormLocalizations.addTranslations].
+class FormLocalizations {
+  /// Creates localizations for [locale] (language code, e.g. `'en'`).
+  FormLocalizations(this.locale);
+
+  /// Active language code.
+  final String locale;
+
+  static final Map<String, Map<String, String>> _custom = {};
+
+  static const Map<String, Map<String, String>> _builtIn = {
+    'en': {
+      'required': 'This field is required',
+      'email': 'Enter a valid email address',
+      'phone': 'Enter a valid phone number',
+      'url': 'Enter a valid URL',
+      'number': 'Enter a valid number',
+      'decimal': 'Enter a valid decimal number',
+      'min': 'Value must be at least {value}',
+      'max': 'Value must be at most {value}',
+      'minLength': 'Must be at least {value} characters',
+      'maxLength': 'Must be at most {value} characters',
+      'regex': 'Invalid format',
+      'matchField': 'Fields do not match',
+      'passwordStrength':
+          'Password must contain upper, lower, digit and symbol',
+      'next': 'Next',
+      'back': 'Back',
+      'submit': 'Submit',
+      'select': 'Select',
+      'search': 'Search',
+      'discardTitle': 'Discard changes?',
+      'discardMessage':
+          'You have unsaved changes. Going back will discard them.',
+      'discard': 'Discard',
+      'cancel': 'Cancel',
+    },
+    'hi': {
+      'required': 'यह फ़ील्ड आवश्यक है',
+      'email': 'मान्य ईमेल पता दर्ज करें',
+      'phone': 'मान्य फ़ोन नंबर दर्ज करें',
+      'url': 'मान्य URL दर्ज करें',
+      'number': 'मान्य संख्या दर्ज करें',
+      'decimal': 'मान्य दशमलव संख्या दर्ज करें',
+      'min': 'मान कम से कम {value} होना चाहिए',
+      'max': 'मान अधिकतम {value} होना चाहिए',
+      'minLength': 'कम से कम {value} अक्षर होने चाहिए',
+      'maxLength': 'अधिकतम {value} अक्षर होने चाहिए',
+      'regex': 'अमान्य प्रारूप',
+      'matchField': 'फ़ील्ड मेल नहीं खाते',
+      'passwordStrength':
+          'पासवर्ड में बड़े, छोटे अक्षर, अंक और चिह्न होने चाहिए',
+      'next': 'आगे',
+      'back': 'पीछे',
+      'submit': 'जमा करें',
+      'select': 'चुनें',
+      'search': 'खोजें',
+      'discardTitle': 'परिवर्तन हटाएँ?',
+      'discardMessage':
+          'आपके पास सहेजे नहीं गए परिवर्तन हैं। वापस जाने पर वे हट जाएँगे।',
+      'discard': 'हटाएँ',
+      'cancel': 'रद्द करें',
+    },
+    'ar': {
+      'required': 'هذا الحقل مطلوب',
+      'email': 'أدخل بريدًا إلكترونيًا صحيحًا',
+      'phone': 'أدخل رقم هاتف صحيحًا',
+      'url': 'أدخل رابطًا صحيحًا',
+      'number': 'أدخل رقمًا صحيحًا',
+      'decimal': 'أدخل رقمًا عشريًا صحيحًا',
+      'min': 'يجب أن تكون القيمة {value} على الأقل',
+      'max': 'يجب أن تكون القيمة {value} كحد أقصى',
+      'minLength': 'يجب ألا يقل عن {value} حرفًا',
+      'maxLength': 'يجب ألا يزيد عن {value} حرفًا',
+      'regex': 'تنسيق غير صالح',
+      'matchField': 'الحقول غير متطابقة',
+      'passwordStrength':
+          'يجب أن تحتوي كلمة المرور على أحرف كبيرة وصغيرة وأرقام ورموز',
+      'next': 'التالي',
+      'back': 'السابق',
+      'submit': 'إرسال',
+      'select': 'اختر',
+      'search': 'بحث',
+      'discardTitle': 'تجاهل التغييرات؟',
+      'discardMessage': 'لديك تغييرات غير محفوظة. الرجوع سيؤدي إلى تجاهلها.',
+      'discard': 'تجاهل',
+      'cancel': 'إلغاء',
+    },
+    'es': {
+      'required': 'Este campo es obligatorio',
+      'email': 'Introduce un correo electrónico válido',
+      'phone': 'Introduce un teléfono válido',
+      'url': 'Introduce una URL válida',
+      'number': 'Introduce un número válido',
+      'decimal': 'Introduce un número decimal válido',
+      'min': 'El valor debe ser al menos {value}',
+      'max': 'El valor debe ser como máximo {value}',
+      'minLength': 'Debe tener al menos {value} caracteres',
+      'maxLength': 'Debe tener como máximo {value} caracteres',
+      'regex': 'Formato no válido',
+      'matchField': 'Los campos no coinciden',
+      'passwordStrength':
+          'La contraseña debe contener mayúsculas, minúsculas, dígitos y símbolos',
+      'next': 'Siguiente',
+      'back': 'Atrás',
+      'submit': 'Enviar',
+      'select': 'Seleccionar',
+      'search': 'Buscar',
+      'discardTitle': '¿Descartar cambios?',
+      'discardMessage': 'Tienes cambios sin guardar. Volver los descartará.',
+      'discard': 'Descartar',
+      'cancel': 'Cancelar',
+    },
+    'fr': {
+      'required': 'Ce champ est obligatoire',
+      'email': 'Saisissez une adresse e-mail valide',
+      'phone': 'Saisissez un numéro de téléphone valide',
+      'url': 'Saisissez une URL valide',
+      'number': 'Saisissez un nombre valide',
+      'decimal': 'Saisissez un nombre décimal valide',
+      'min': 'La valeur doit être au moins {value}',
+      'max': 'La valeur doit être au plus {value}',
+      'minLength': 'Au moins {value} caractères requis',
+      'maxLength': 'Au plus {value} caractères autorisés',
+      'regex': 'Format invalide',
+      'matchField': 'Les champs ne correspondent pas',
+      'passwordStrength':
+          'Le mot de passe doit contenir majuscules, minuscules, chiffres et symboles',
+      'next': 'Suivant',
+      'back': 'Retour',
+      'submit': 'Envoyer',
+      'select': 'Sélectionner',
+      'search': 'Rechercher',
+      'discardTitle': 'Abandonner les modifications ?',
+      'discardMessage':
+          'Vous avez des modifications non enregistrées. Revenir les supprimera.',
+      'discard': 'Abandonner',
+      'cancel': 'Annuler',
+    },
+    'de': {
+      'required': 'Dieses Feld ist erforderlich',
+      'email': 'Geben Sie eine gültige E-Mail-Adresse ein',
+      'phone': 'Geben Sie eine gültige Telefonnummer ein',
+      'url': 'Geben Sie eine gültige URL ein',
+      'number': 'Geben Sie eine gültige Zahl ein',
+      'decimal': 'Geben Sie eine gültige Dezimalzahl ein',
+      'min': 'Der Wert muss mindestens {value} sein',
+      'max': 'Der Wert darf höchstens {value} sein',
+      'minLength': 'Mindestens {value} Zeichen erforderlich',
+      'maxLength': 'Höchstens {value} Zeichen erlaubt',
+      'regex': 'Ungültiges Format',
+      'matchField': 'Felder stimmen nicht überein',
+      'passwordStrength':
+          'Passwort muss Groß-, Kleinbuchstaben, Ziffern und Symbole enthalten',
+      'next': 'Weiter',
+      'back': 'Zurück',
+      'submit': 'Absenden',
+      'select': 'Auswählen',
+      'search': 'Suchen',
+      'discardTitle': 'Änderungen verwerfen?',
+      'discardMessage':
+          'Sie haben ungespeicherte Änderungen. Zurückgehen verwirft sie.',
+      'discard': 'Verwerfen',
+      'cancel': 'Abbrechen',
+    },
+  };
+
+  /// Registers or overrides translations for [locale].
+  static void addTranslations(String locale, Map<String, String> messages) {
+    _custom.putIfAbsent(locale, () => {}).addAll(messages);
+  }
+
+  /// Resolves [key], replacing `{value}` with [value] when provided.
+  String message(String key, {Object? value}) {
+    final raw = _custom[locale]?[key] ??
+        _builtIn[locale]?[key] ??
+        _custom['en']?[key] ??
+        _builtIn['en']![key] ??
+        key;
+    return value == null ? raw : raw.replaceAll('{value}', value.toString());
+  }
+
+  /// Whether [locale] is a right-to-left language.
+  bool get isRtl => const {'ar', 'fa', 'he', 'ur'}.contains(locale);
+}

@@ -1,0 +1,184 @@
+/// Every field type the package can render from JSON.
+///
+/// Types marked *pluggable* (image, camera, file, signature, qrScanner,
+/// barcodeScanner, richText, markdown, htmlEditor) render a registered
+/// adapter widget — see `FieldFactory.register` — so the core package
+/// stays dependency-free.
+enum FieldType {
+  /// Single line text input.
+  text,
+
+  /// Multiline text area.
+  textarea,
+
+  /// Obscured password input.
+  password,
+
+  /// Email input with email keyboard.
+  email,
+
+  /// Integer number input.
+  number,
+
+  /// Decimal number input.
+  decimal,
+
+  /// Phone number input.
+  phone,
+
+  /// URL input.
+  url,
+
+  /// Search input with search action.
+  search,
+
+  /// Date picker field.
+  date,
+
+  /// Time picker field.
+  time,
+
+  /// Combined date and time picker.
+  datetime,
+
+  /// Single-select dropdown.
+  dropdown,
+
+  /// Multi-select dropdown (checkbox list in a dialog).
+  multiselect,
+
+  /// Single checkbox.
+  checkbox,
+
+  /// Group of checkboxes bound to a list value.
+  checkboxGroup,
+
+  /// Single radio button.
+  radio,
+
+  /// Group of radio buttons.
+  radioGroup,
+
+  /// Material switch.
+  switchField,
+
+  /// Single value slider.
+  slider,
+
+  /// Range slider bound to a two-element list value.
+  rangeSlider,
+
+  /// Choice chips (single or multi via `extra.multiple`).
+  chips,
+
+  /// Toggle buttons row.
+  toggleButtons,
+
+  /// Material 3 segmented button.
+  segmented,
+
+  /// Star rating field.
+  rating,
+
+  /// Numeric stepper with +/- buttons.
+  stepper,
+
+  /// Color picker (preset palette dialog).
+  colorPicker,
+
+  /// Image picker — pluggable adapter.
+  image,
+
+  /// Camera capture — pluggable adapter.
+  camera,
+
+  /// File picker — pluggable adapter.
+  file,
+
+  /// Signature pad — pluggable adapter.
+  signature,
+
+  /// One-time-password boxes.
+  otp,
+
+  /// Pin code boxes (obscured OTP).
+  pin,
+
+  /// Country picker (dropdown fed by options / async loader).
+  country,
+
+  /// State picker (usually conditional on country).
+  state,
+
+  /// City picker (usually conditional on state).
+  city,
+
+  /// Autocomplete over local options.
+  autocomplete,
+
+  /// Debounced async autocomplete.
+  typeahead,
+
+  /// QR scanner — pluggable adapter.
+  qrScanner,
+
+  /// Barcode scanner — pluggable adapter.
+  barcodeScanner,
+
+  /// Rich text editor — pluggable adapter (falls back to textarea).
+  richText,
+
+  /// Markdown editor — pluggable adapter (falls back to textarea).
+  markdown,
+
+  /// HTML editor — pluggable adapter (falls back to textarea).
+  htmlEditor,
+
+  /// Hidden field: participates in data, renders nothing.
+  hidden,
+
+  /// Read-only display of a value.
+  readOnly,
+
+  /// Static label (display only).
+  label,
+
+  /// Horizontal divider (display only).
+  divider,
+
+  /// Vertical spacer (display only).
+  spacer,
+
+  /// Section header (display only).
+  sectionHeader,
+
+  /// Expansion tile containing child fields.
+  expansion,
+
+  /// Nested sub-form containing child fields, stored as a nested map.
+  group,
+
+  /// Developer-registered custom widget.
+  custom;
+
+  /// Parses a JSON type string (snake_case, kebab-case or camelCase).
+  static FieldType fromString(String raw) {
+    final normalized = raw
+        .replaceAllMapped(
+            RegExp('[-_]([a-z])'), (m) => m.group(1)!.toUpperCase())
+        .trim();
+    const aliases = <String, FieldType>{
+      'switch': FieldType.switchField,
+      'readonly': FieldType.readOnly,
+      'multiSelect': FieldType.multiselect,
+      'range': FieldType.rangeSlider,
+      'section': FieldType.sectionHeader,
+      'html': FieldType.htmlEditor,
+    };
+    return aliases[normalized] ??
+        FieldType.values.firstWhere(
+          (t) => t.name.toLowerCase() == normalized.toLowerCase(),
+          orElse: () => FieldType.custom,
+        );
+  }
+}
