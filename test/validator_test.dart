@@ -19,7 +19,7 @@ void main() {
 
     test('email', () {
       expect(run('email', 'a@b.com'), isNull);
-      expect(run('email', 'accounts@pragtech.co.in'), isNull);
+      expect(run('email', 'rupeshrajak438@gmail.com'), isNull);
       expect(run('email', 'nope'), isNotNull);
       expect(run('email', 'a@b'), isNotNull);
       expect(run('email', null), isNull, reason: 'empty skipped');

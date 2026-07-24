@@ -18,7 +18,7 @@ const _formJson = {
 
 const _record = {
   'name': 'Rupesh',
-  'email': 'accounts@pragtech.co.in',
+  'email': 'rupeshrajak438@gmail.com',
   'tags': ['a'],
 };
 
@@ -31,7 +31,7 @@ void main() {
     test('attach with initialData prefills and stays clean', () {
       c.attach(FormParser.parse(_formJson), initialData: _record);
       expect(c.getValue('name'), 'Rupesh');
-      expect(c.getValue('email'), 'accounts@pragtech.co.in');
+      expect(c.getValue('email'), 'rupeshrajak438@gmail.com');
       expect(c.getList('tags'), ['a']);
       expect(c.isDirty, isFalse, reason: 'untouched edit form is not dirty');
     });
@@ -137,7 +137,7 @@ void main() {
     testWidgets('prefilled values render in the fields', (tester) async {
       await pumpEditRoute(tester, initialData: _record);
       expect(find.text('Rupesh'), findsOneWidget);
-      expect(find.text('accounts@pragtech.co.in'), findsOneWidget);
+      expect(find.text('rupeshrajak438@gmail.com'), findsOneWidget);
     });
 
     testWidgets('prefilled form pops without discard dialog', (tester) async {

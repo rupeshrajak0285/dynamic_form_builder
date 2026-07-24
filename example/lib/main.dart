@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   builder: (_) => const DemoFormPage(
                     initialData: {
                       'name': 'Rupesh Rajak',
-                      'email': 'accounts@pragtech.co.in',
+                      'email': 'rupeshrajak438@gmail.com',
                       'age': 28,
                       'country': 'IN',
                       'interests': ['Flutter', 'Odoo'],
