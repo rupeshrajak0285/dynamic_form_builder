@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Update demo data and maintainer contact in the example app and tests.
+
 ## 0.2.0
 
 - **Edit mode / prefilled forms**: `DynamicForm(initialData: record)`, JSON
