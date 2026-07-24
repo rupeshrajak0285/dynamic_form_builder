@@ -1,12 +1,12 @@
-# dynamic_form_builder
+# json_form_engine
 
 JSON-driven dynamic form builder for Flutter. Generate complete, validated,
 conditional, multi-step forms from JSON — with a powerful controller API,
 50+ field types, theming, localization (en/hi/ar/es/fr/de + custom), and
 **zero third-party dependencies**.
 
-[![CI](https://github.com/rupeshrajak0285/dynamic_form_builder/actions/workflows/ci.yml/badge.svg)](https://github.com/rupeshrajak0285/dynamic_form_builder/actions)
-[![pub package](https://img.shields.io/pub/v/dynamic_form_builder.svg)](https://pub.dev/packages/dynamic_form_builder)
+[![CI](https://github.com/rupeshrajak0285/json_form_engine/actions/workflows/ci.yml/badge.svg)](https://github.com/rupeshrajak0285/json_form_engine/actions)
+[![pub package](https://img.shields.io/pub/v/json_form_engine.svg)](https://pub.dev/packages/json_form_engine)
 
 ## Why
 
@@ -22,7 +22,7 @@ conditional, multi-step forms from JSON — with a powerful controller API,
 ## Quick start
 
 ```dart
-import 'package:dynamic_form_builder/dynamic_form_builder.dart';
+import 'package:json_form_engine/json_form_engine.dart';
 
 final controller = DynamicFormController();
 

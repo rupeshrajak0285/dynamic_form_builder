@@ -1,5 +1,5 @@
-name: dynamic_form_builder_example
-description: Demo app for dynamic_form_builder.
+name: json_form_engine_example
+description: Demo app for json_form_engine.
 publish_to: none
 version: 1.0.0
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dynamic_form_builder:
+  json_form_engine:
     path: ../
 
 dev_dependencies:

@@ -1,6 +1,6 @@
-// Demo app for dynamic_form_builder: a registration form exercising text,
+// Demo app for json_form_engine: a registration form exercising text,
 // selection, conditional logic, sliders, validation and dynamic options.
-import 'package:dynamic_form_builder/dynamic_form_builder.dart';
+import 'package:json_form_engine/json_form_engine.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const DemoApp());
@@ -12,7 +12,7 @@ class DemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'dynamic_form_builder demo',
+        title: 'json_form_engine demo',
         theme: ThemeData(
           colorSchemeSeed: Colors.indigo,
           useMaterial3: true,
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('dynamic_form_builder')),
+      appBar: AppBar(title: const Text('json_form_engine')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
