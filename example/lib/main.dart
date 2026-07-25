@@ -176,6 +176,28 @@ const _registrationJson = {
     {'type': 'rating', 'id': 'satisfaction', 'label': 'Rate this demo'},
     {'type': 'date', 'id': 'dob', 'label': 'Date of Birth'},
     {'type': 'colorPicker', 'id': 'favColor', 'label': 'Favorite Color'},
+    {'type': 'sectionHeader', 'id': 'sec_media', 'label': 'Media'},
+    {
+      'type': 'image',
+      'id': 'profilePhoto',
+      'label': 'Profile Photo',
+      'source': 'both', // bottom sheet: Gallery / Camera
+      'imageQuality': 80,
+    },
+    {
+      'type': 'image',
+      'id': 'gallery',
+      'label': 'Gallery Photos',
+      'source': 'gallery',
+      'multiple': true,
+      'maxImages': 4,
+    },
+    {
+      'type': 'file',
+      'id': 'resume',
+      'label': 'Resume (PDF)',
+      'extensions': ['pdf'],
+    },
     {
       'type': 'switch',
       'id': 'newsletter',

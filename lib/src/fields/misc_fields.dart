@@ -157,8 +157,8 @@ class DynamicDisplayField extends StatelessWidget {
   }
 }
 
-/// Renderer shown for pluggable field types (image, camera, file, signature,
-/// QR/barcode…) when no adapter has been registered via
+/// Renderer shown for pluggable field types (signature, QR/barcode,
+/// custom…) when no adapter has been registered via
 /// [FieldFactory.register]. Keeps forms functional and tells the developer
 /// exactly what to do.
 class MissingAdapterField extends StatelessWidget {

@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.3.0
+
+- **Built-in media pickers**: the `image`, `camera` and `file` field types
+  now work straight from JSON — no adapter registration needed. Powered by
+  Flutter's official `image_picker` and `file_selector` plugins.
+  - `image`: gallery and/or camera (`source`: `gallery` / `camera` /
+    `both` with a localized source bottom sheet), thumbnail previews,
+    `multiple` + `maxImages`, `imageQuality`, `maxWidth`/`maxHeight`,
+    `preferredCamera`, video picking (`video: true`,
+    `maxDurationSeconds`) and `previewSize`.
+  - `camera`: camera-only shorthand for `image`.
+  - `file`: document picking with `extensions` / `mimeTypes` filters,
+    `multiple` + `maxFiles`, file-name rows with remove buttons.
+  - Values are stored as the picked path `String` (or `List<String>` for
+    `multiple`), so `required` validation, conditions, dirty tracking and
+    edit mode work like any other field.
+  - New `MediaPickerAdapter.instance` seam: swap the picking service
+    (cropper, custom permission flow, test fake) without replacing the
+    field UI; `FieldFactory.register` overrides still win entirely.
+  - New localized strings (`gallery`, `camera`, `selectImage`,
+    `selectFile`, `remove`) in all 6 built-in locales.
+
 ## 0.2.1
 
 - Update demo data and maintainer contact in the example app and tests.

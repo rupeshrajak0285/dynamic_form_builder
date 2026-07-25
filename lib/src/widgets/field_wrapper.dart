@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../builders/field_factory.dart';
 import '../controllers/dynamic_form_controller.dart';
 import '../fields/date_time_fields.dart';
+import '../fields/media_fields.dart';
 import '../fields/misc_fields.dart';
 import '../fields/selection_fields.dart';
 import '../fields/slider_fields.dart';
@@ -113,7 +114,9 @@ class FieldWrapper extends StatelessWidget {
         );
       case FieldType.image:
       case FieldType.camera:
+        return DynamicImageField(field: field, controller: controller);
       case FieldType.file:
+        return DynamicFileField(field: field, controller: controller);
       case FieldType.signature:
       case FieldType.qrScanner:
       case FieldType.barcodeScanner:

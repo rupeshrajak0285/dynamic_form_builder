@@ -1,9 +1,11 @@
 /// Every field type the package can render from JSON.
 ///
-/// Types marked *pluggable* (image, camera, file, signature, qrScanner,
-/// barcodeScanner, richText, markdown, htmlEditor) render a registered
-/// adapter widget — see `FieldFactory.register` — so the core package
-/// stays dependency-free.
+/// Types marked *pluggable* (signature, qrScanner, barcodeScanner,
+/// richText, markdown, htmlEditor) render a registered adapter widget —
+/// see `FieldFactory.register` — so the core package stays
+/// dependency-free. Image, camera and file picking are built in (powered
+/// by Flutter's official `image_picker` / `file_selector` plugins) and
+/// can still be overridden the same way.
 enum FieldType {
   /// Single line text input.
   text,
@@ -86,13 +88,13 @@ enum FieldType {
   /// Color picker (preset palette dialog).
   colorPicker,
 
-  /// Image picker — pluggable adapter.
+  /// Image picker — built-in gallery/camera picking with previews.
   image,
 
-  /// Camera capture — pluggable adapter.
+  /// Camera capture — built-in, camera-only variant of [image].
   camera,
 
-  /// File picker — pluggable adapter.
+  /// File picker — built-in document picking with extension filters.
   file,
 
   /// Signature pad — pluggable adapter.

@@ -11,6 +11,7 @@ export 'src/controllers/dynamic_form_controller.dart';
 export 'src/controllers/field_state.dart';
 export 'src/extensions/controller_extensions.dart';
 export 'src/fields/date_time_fields.dart';
+export 'src/fields/media_fields.dart';
 export 'src/fields/misc_fields.dart';
 export 'src/fields/selection_fields.dart';
 export 'src/fields/slider_fields.dart';

@@ -66,5 +66,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick images for form fields.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Capture photos for form fields.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record videos with sound for form fields.</string>
 </dict>
 </plist>

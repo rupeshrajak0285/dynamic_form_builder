@@ -2,8 +2,9 @@ name: json_form_engine
 description: >-
   JSON-driven dynamic form builder for Flutter. Generate complete, validated,
   conditional, multi-step forms from JSON with a powerful controller API,
-  50+ field types, theming, localization, and zero third-party dependencies.
-version: 0.2.1
+  50+ field types, built-in image/camera/file pickers, theming, localization,
+  and no third-party dependencies beyond Flutter's official plugins.
+version: 0.3.0
 homepage: https://github.com/rupeshrajak0285/json_form_engine
 repository: https://github.com/rupeshrajak0285/json_form_engine
 issue_tracker: https://github.com/rupeshrajak0285/json_form_engine/issues
@@ -21,6 +22,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Official flutter.dev plugins (first-party) powering the built-in
+  # image / camera / file field types.
+  image_picker: ^1.1.2
+  file_selector: ^1.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import '../conditions/condition_evaluator.dart';
 import '../localization/form_localizations.dart';
 import '../models/field_config.dart';

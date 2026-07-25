@@ -2,8 +2,9 @@
 
 JSON-driven dynamic form builder for Flutter. Generate complete, validated,
 conditional, multi-step forms from JSON — with a powerful controller API,
-50+ field types, theming, localization (en/hi/ar/es/fr/de + custom), and
-**zero third-party dependencies**.
+50+ field types, built-in image/camera/file pickers, theming, localization
+(en/hi/ar/es/fr/de + custom), and **no third-party dependencies** (only
+Flutter's official `image_picker` / `file_selector` plugins).
 
 [![CI](https://github.com/rupeshrajak0285/json_form_engine/actions/workflows/ci.yml/badge.svg)](https://github.com/rupeshrajak0285/json_form_engine/actions)
 [![pub package](https://img.shields.io/pub/v/json_form_engine.svg)](https://pub.dev/packages/json_form_engine)
@@ -61,16 +62,17 @@ preserves values of surviving field ids (runtime JSON changes).
 | Selection | `dropdown`, `multiselect`, `checkbox`, `checkboxGroup`, `radio`, `radioGroup`, `switch`, `chips`, `toggleButtons`, `segmented`, `country`, `state`, `city`, `autocomplete`, `typeahead` |
 | Numeric | `slider`, `rangeSlider`, `rating`, `stepper` |
 | Misc | `colorPicker`, `hidden`, `label`, `divider`, `spacer`, `sectionHeader`, `expansion`, `group`, `custom` |
-| Pluggable | `image`, `camera`, `file`, `signature`, `qrScanner`, `barcodeScanner`, `richText`, `markdown`, `htmlEditor` |
+| Media (built-in) | `image`, `camera`, `file` |
+| Pluggable | `signature`, `qrScanner`, `barcodeScanner`, `richText`, `markdown`, `htmlEditor` |
 
 **Pluggable types** keep the core dependency-free: the JSON schema, controller
 and validation all work out of the box, and you register the widget backed by
 the plugin of *your* choice once at startup:
 
 ```dart
-FieldFactory.register(FieldType.image, (context, field, controller) {
-  return MyImagePickerTile(   // e.g. wrapping package:image_picker
-    onPicked: (path) => controller.setValue(field.id, path),
+FieldFactory.register(FieldType.signature, (context, field, controller) {
+  return MySignaturePad(
+    onDone: (bytes) => controller.setValue(field.id, bytes),
   );
 });
 ```
@@ -81,6 +83,59 @@ Custom JSON types work the same way:
 FieldFactory.registerCustom('map_picker', (context, field, controller) => ...);
 // JSON: {"type": "custom", "id": "loc", "customType": "map_picker"}
 ```
+
+## Media fields: image, camera & file (built-in)
+
+Gallery/camera image picking (with thumbnail previews) and document picking
+work straight from JSON — no adapter registration needed:
+
+```json
+{"fields": [
+  {"type": "image", "id": "profilePhoto", "label": "Profile Photo",
+   "source": "both", "imageQuality": 80},
+
+  {"type": "image", "id": "gallery", "label": "Photos",
+   "source": "gallery", "multiple": true, "maxImages": 4},
+
+  {"type": "camera", "id": "selfie", "label": "Selfie",
+   "preferredCamera": "front"},
+
+  {"type": "file", "id": "resume", "label": "Resume",
+   "extensions": ["pdf", "docx"], "validators": ["required"]}
+]}
+```
+
+- `image` — `source`: `"gallery"`, `"camera"` or `"both"` (default; shows a
+  Gallery/Camera bottom sheet). Extras: `multiple`, `maxImages`,
+  `imageQuality` (0–100), `maxWidth`/`maxHeight`, `preferredCamera`
+  (`"front"`/`"rear"`), `video: true` (pick/record a video,
+  `maxDurationSeconds`), `previewSize`.
+- `camera` — camera-only shorthand for `image`.
+- `file` — extras: `multiple`, `maxFiles`, `extensions` (e.g.
+  `["pdf", "docx"]`), `mimeTypes`.
+
+**Stored value**: the picked file **path** as a `String` (a `List<String>`
+with `"multiple": true`) — read it with `controller.getValue(id)` and upload
+however you like. `required` validation, conditions, theming and edit mode
+all work like any other field.
+
+Powered by Flutter's official `image_picker` and `file_selector` plugins.
+Platform setup (only what those plugins need):
+
+- **iOS** — add to `ios/Runner/Info.plist`:
+  `NSPhotoLibraryUsageDescription`, `NSCameraUsageDescription` and (for
+  video) `NSMicrophoneUsageDescription`.
+- **Android** — nothing; the photo picker and camera intents need no
+  manifest permissions.
+
+Want a different picking flow (cropper, custom permission UX)? Swap the
+service — the field UI stays:
+
+```dart
+MediaPickerAdapter.instance = MyCroppingPickerAdapter();
+```
+
+…or replace the whole widget via `FieldFactory.register(FieldType.image, ...)`.
 
 ## Common field properties
 
@@ -338,8 +393,8 @@ widgets, and high-contrast support via your app theme.
 
 See [`example/lib/main.dart`](example/lib/main.dart) for a complete
 registration demo: conditional state dropdown fed by a simulated API,
-age-gated license field, chips, sliders, rating, color picker and multi-rule
-validation.
+age-gated license field, chips, sliders, rating, color picker, image /
+camera / file pickers and multi-rule validation.
 
 ## License
 
